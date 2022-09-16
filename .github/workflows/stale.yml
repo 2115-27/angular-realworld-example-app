@@ -12,11 +12,8 @@ jobs:
             git clone https://github.com/2115-27/angular-realworld-example-app.git
             cd angular-realworld-example-app/
             echo ----git branch -av----
-            for k in $(git branch | sed /\*/d); do 
-              if [ -z "$(git log -1 --before='1 week ago' -s $k)" ]; then
-                git branch -D $k
-              fi
-            done
+            git branch -av
+            git log -1 --before='1 week ago'
         env:
            GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
