@@ -13,8 +13,10 @@ jobs:
             cd angular-realworld-example-app/
             echo ----git branch with sed----
             git branch | sed /\*/d
-            echo ---git log --before='Thu Sep 15 11:31:56 2022 +0530'----------
-            git log --before='Thu Sep 15 11:31:56 2022 +0530'
+            echo ---git log --after='Thu Sep 15 11:31:56 2022 +0530' for m-0 branch----------
+            git log --after='Thu Sep 15 11:31:56 2022 +0530' -s m-0
+            echo ---git log --before='Thu Sep 15 11:31:56 2022 +0530' for m-0 branch----------
+            git log --before='Thu Sep 15 11:31:56 2022 +0530' -s m-0
         env:
            GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
