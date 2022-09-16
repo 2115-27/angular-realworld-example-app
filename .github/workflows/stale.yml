@@ -13,8 +13,8 @@ jobs:
             cd angular-realworld-example-app/
             echo ----git branch -av----
             git branch -av
-            echo ---git log --since='2 months ago'----------
-            git log --since='1 week ago'
+            echo ---git log --before='Thu Sep 15 11:31:56 2022 +0530'----------
+            git log --before='Thu Sep 15 11:31:56 2022 +0530'
         env:
            GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
