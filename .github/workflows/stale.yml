@@ -6,15 +6,18 @@ jobs:
   dltStaleBranches:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-          
-      - name: Delete stale branches
+      
+      - name: List stale branches
         run:  |
-          for k in $(git branch | sed /\*/d); do 
-            if [ -z "$(git log -1 --before='1 week ago' -s $k)" ]; then
-              git branch -D $k
-            fi
-          done
+            git clone https://github.com/2115-27/angular-realworld-example-app.git
+            cd angular-realworld-example-app/
+            echo ----git branch -av----
+            for k in $(git branch | sed /\*/d); do 
+              if [ -z "$(git log -1 --before='1 week ago' -s $k)" ]; then
+                git branch -D $k
+              fi
+            done
+        env:
+           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
           
