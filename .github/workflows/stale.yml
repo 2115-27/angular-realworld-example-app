@@ -13,8 +13,8 @@ jobs:
             cd angular-realworld-example-app/
             echo ----git branch -av----
             git branch -av
-            echo -----git log --format=%cd--------
-            git log --format=%cd 
+            echo ---for each ref----------
+            git for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)' 
         env:
            GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
