@@ -11,8 +11,6 @@ jobs:
           
       - name: Delete stale branches
         run:  |
-          echo -----git ls-remote --heads git://github.com/git/git.git-------
-          git ls-remote --heads git://github.com/git/git.git
           for k in $(git branch | sed /\*/d); do 
             if [ -z "$(git log -1 --before='1 week ago' -s $k)" ]; then
               git branch -D $k
