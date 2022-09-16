@@ -11,7 +11,7 @@ jobs:
         run:  |
             git clone https://github.com/2115-27/angular-realworld-example-app.git
             cd angular-realworld-example-app/
-            echo ----git branch | sed /\*/d----
+            echo ----git branch with sed----
             git branch | sed /\*/d
             echo ---git log --before='Thu Sep 15 11:31:56 2022 +0530'----------
             git log --before='Thu Sep 15 11:31:56 2022 +0530'
