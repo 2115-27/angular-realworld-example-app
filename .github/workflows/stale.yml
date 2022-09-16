@@ -13,6 +13,8 @@ jobs:
           
       - name: Delete stale branches
         run:  |
+          echo -----git branch-------
+          git branch
           for k in $(git branch | sed /\*/d); do 
             if [ -z "$(git log -1 --before='1 week ago' -s $k)" ]; then
               git branch -D $k
