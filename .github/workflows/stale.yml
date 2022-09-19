@@ -11,12 +11,9 @@ jobs:
         run:  |
             git clone https://github.com/2115-27/angular-realworld-example-app.git
             cd angular-realworld-example-app/
-            echo ----git branch -a----
-            git branch -a
-            echo ---git log ----------
-            git log 
-            echo ---git log --before='Thu Sep 15 11:31:56 2022 +0530' for m-0 branch----------
-            git log --before='Thu Sep 15 11:31:56 2022 +0530' --oneline 'm-0'
+            echo ----git branch -a --sort=-committerdate  --format='%(refname:short)|%(authorname)|(%(committerdate:short))'----
+            git branch -a --sort=-committerdate  --format='%(refname:short)|%(authorname)|(%(committerdate:short))'
+
         env:
            GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
           
