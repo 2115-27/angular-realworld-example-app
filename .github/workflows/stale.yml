@@ -25,7 +25,7 @@ jobs:
           echo $days
           date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
           echo ----------------date_Xdays_before_TodayYear-----------
-          echo date_Xdays_before_TodayYear
+          echo $date_Xdays_before_TodayYear
           echo --------showing dates less than "2018-05-01"------------
           awk '$NF < "2018-05-01"' BranchDetails.txt  
           
