@@ -15,8 +15,6 @@ jobs:
           git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
           echo --------BranchDetails.txt---------------
           cat BranchDetails.txt
-          sed -i "s~origin/~~g" BranchDetails.txt
-          sed -i "s~,~~g" BranchDetails.txt
 
           echo --------showing dates less than "2018-05-01"------------
           awk '$NF < "2018-05-01"' BranchDetails.txt  
