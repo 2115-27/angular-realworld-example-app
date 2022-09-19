@@ -10,6 +10,5 @@ echo --------BranchDetails.txt---------------
 cat BranchDetails.txt
 sed -i "s~origin/~~g" BranchDetails.txt
 sed -i "s~,~~g" BranchDetails.txt
-egrep -o "[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}" BranchDetails.txt >> date.txt
-echo ----date.txt-----
-cat date.txt
+echo --------showing dates less than "2018-05-01"------------
+awk '$NF < "2018-05-01"' BranchDetails.txt
