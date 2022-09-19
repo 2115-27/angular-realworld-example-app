@@ -17,7 +17,6 @@ jobs:
           cat BranchDetails.txt
           sed -i "s~origin/~~g" BranchDetails.txt
           sed -i "s~,~~g" BranchDetails.txt
-          echo --------BranchDetails.txt after sed---------------
-          cat BranchDetails.txt
+
           echo --------showing dates less than "2018-05-01"------------
           awk '$NF < "2018-05-01"' BranchDetails.txt  
