@@ -10,11 +10,6 @@ echo --------BranchDetails.txt---------------
 cat BranchDetails.txt
 sed -i "s~origin/~~g" BranchDetails.txt
 sed -i "s~,~~g" BranchDetails.txt
-
-echo "Generating Branch csv file..."
-
-cd ..
-awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date,Delete? (Y/N)"}; NR > 0{print $1, $2, $3, $4, $5, $6, $7, $8, $9;}' BranchDetails.txt > BranchList.csv
-echo "CSV File generated."
-cat BranchList.csv
-rm -rf BranchDetails.txt
+egrep -o "[0-9]{2}/[0-9]{2}/[0-9]{4} [0-9]{2}:[0-9]{2}:[0-9]{2}" BranchDetails.txt >> date.txt
+echo ----date.txt-----
+cat date.txt
