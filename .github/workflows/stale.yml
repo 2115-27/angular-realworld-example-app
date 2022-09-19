@@ -9,5 +9,15 @@ jobs:
       - uses: actions/checkout@v2
       - name: Delete stale branches
         run:  |
-          echo -------./ListBranchScript.sh ---------------------
-          bash .github/ListBranchScript.sh
+          git clone https://github.com/2115-27/angular-realworld-example-app.git/
+          cd angular-realworld-example-app/
+          
+          git branch -a --sort=-committerdate  --format='%(refname:short)|%(authorname)|(%(committerdate:short))'>> BranchDetails.txt
+          echo --------BranchDetails.txt---------------
+          cat BranchDetails.txt
+          sed -i "s~origin/~~g" BranchDetails.txt
+          sed -i "s~,~~g" BranchDetails.txt
+          echo --------BranchDetails.txt after sed---------------
+          cat BranchDetails.txt
+          echo --------showing dates less than "2018-05-01"------------
+          awk '$NF < "2018-05-01"' BranchDetails.txt
