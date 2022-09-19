@@ -1,7 +1,11 @@
 name: DLT_STALE
 on:
   workflow_dispatch:
-
+    inputs: 
+      days:
+       description: 'check commit for last X number of days'
+       required: true
+       type: string 
 jobs: 
   dltStaleBranches:
     runs-on: ubuntu-latest
@@ -15,6 +19,15 @@ jobs:
           git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
           echo --------BranchDetails.txt---------------
           cat BranchDetails.txt
-
+          
+          days="${{ github.event.inputs.days }}"
+          echo ------------$days-----------------
+          echo $days
+          date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
+          echo ----------------date_Xdays_before_TodayYear-----------
+          echo date_Xdays_before_TodayYear
           echo --------showing dates less than "2018-05-01"------------
           awk '$NF < "2018-05-01"' BranchDetails.txt  
+          
+      - name: Sending notification about stale branch deletion   
+        run: echo Sending notification
