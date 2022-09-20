@@ -39,4 +39,4 @@ jobs:
           awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt    
           
       - name: Sending notification about stale branch deletion   
-        run: echo Sending notification
+        run: echo "Sending an attachment for testing." | mutt -a BranchDetails.txt -s "attachment" athulyams2000@gmail.com
