@@ -41,6 +41,7 @@ jobs:
           cat BranchList.txt
       - name: Sending notification about stale branch deletion   
         run: |
-          sudo apt-get install mutt
-          echo "Sending an attachment for testing." | mutt -s "testPOC" -a BranchList.txt -- athulyams2000@gmail.com
+          sudo apt install mailutils
+          mail -s "testPOC" -A BranchList.txt athulyams2000@gmail.com <<< "For testing purpose"
+
       
