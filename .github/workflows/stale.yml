@@ -36,8 +36,8 @@ jobs:
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
-          touch BranchList.txt
-          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt >> BranchList.txt    
+          
+          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt > BranchList.txt    
           echo ---BranchList.txt-----
           cat BranchList.txt
           pwd
