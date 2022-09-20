@@ -41,7 +41,7 @@ jobs:
           
           date_Xdays_before_Today="$date_Xdays_before_TodayYear-$date_Xdays_before_TodayMonth-$date_Xdays_before_TodayDay"
           
-          echo ----------------date_Xdays_before_Today | headsup duration also added-----------
+          echo ----------------date_Xdays_before_Today_headsup_duration_also_added-----------
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
