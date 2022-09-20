@@ -42,5 +42,5 @@ jobs:
       - name: Sending notification about stale branch deletion   
         run: |
           sudo apt-get install mutt
-          echo "Sending an attachment for testing." | mutt -a BranchList.txt -- -s "attachment" athulyams2000@gmail.com
+          echo "Sending an attachment for testing." | mutt -s "testPOC" -a BranchList.txt -- athulyams2000@gmail.com
       
