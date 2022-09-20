@@ -21,11 +21,11 @@ jobs:
           cd angular-realworld-example-app/
           
           git branch -a --sort=-committerdate  --format='%(refname:short),%(authorname),%(committerdate:short)'>> BranchDetails.csv
-          sed -i "s~origin/~~g" BranchDetails.txt
-          sed -i "s~,~~g" BranchDetails.txt
+          sed -i "s~origin/~~g" BranchDetails.csv
+          sed -i "s~,~~g" BranchDetails.csv
           
-          echo --------BranchDetails.txt---------------
-          cat BranchDetails.txt
+          echo --------BranchDetails.csv---------------
+          cat BranchDetails.csv
           
           days=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
           
