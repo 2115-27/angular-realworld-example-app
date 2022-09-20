@@ -29,7 +29,7 @@ jobs:
           
           days=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
           
-          echo ${{ github.event.inputs.headsup_duration }} is headsup duration
+          echo "${{ github.event.inputs.headsup_duration }} is headsup duration"
           echo ${{ github.event.inputs.days }}  
           
           echo ------------days with headsup duration-----------------
