@@ -50,11 +50,11 @@ jobs:
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
-          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt  >> test.txt
-          echo ---------test.txt---
-          cat test.txt
+          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchList.csv  >> test.csv
+          echo ---------test.csv---
+          cat test.csv
           echo ----------------------------
-          cut -b 1- test.txt 
+          cut -d ',' -f 1 test.csv 
           
       - name: Deleting stale branch  
         run: git branch -d  local_branch_name
