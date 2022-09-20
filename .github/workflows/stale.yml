@@ -34,7 +34,7 @@ jobs:
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "2018-04-05"------------
-          awk '$NF < 2018-04-05' BranchDetails.txt  
+          awk '$NF < "2018-04-05"' BranchDetails.txt  
           
       - name: Sending notification about stale branch deletion   
         run: echo Sending notification
