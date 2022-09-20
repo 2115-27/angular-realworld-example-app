@@ -21,16 +21,20 @@ jobs:
           cat BranchDetails.txt
           
           days="${{ github.event.inputs.days }}"
-          echo ------------$days-----------------
+          echo ------------days-----------------
           echo $days
+          
           date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
           date_Xdays_before_TodayMonth=$(date --date="$days days ago" +"%m")
           date_Xdays_before_TodayDay=$(date --date="$days days ago" +"%d")
+          
           date_Xdays_before_Today="$date_Xdays_before_TodayYear-$date_Xdays_before_TodayMonth-$date_Xdays_before_TodayDay"
+          
           echo ----------------date_Xdays_before_Today-----------
           echo $date_Xdays_before_Today
-          echo --------showing dates less than "2018-05-01"------------
-          awk '$NF < "$date_Xdays_before_Today"' BranchDetails.txt  
+          
+          echo --------showing dates less than "$date_Xdays_before_Today"------------
+          awk '$NF < $date_Xdays_before_Today' BranchDetails.txt  
           
       - name: Sending notification about stale branch deletion   
         run: echo Sending notification
