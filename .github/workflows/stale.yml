@@ -48,9 +48,16 @@ jobs:
         run: |
           pwd
           ls -lrta
+          
+          cd angular-realworld-example-app/
+          
+          echo -------inside angular-realworld-example-app--------
+          pwd 
+          ls -lrta
+          
           echo ---BranchList.txt-----
           cat BranchList.txt
-          chmod 777 BranchList.txt
+          
           sudo apt install mailutils
           mail -s "testPOC" -A BranchList.txt athulyams2000@gmail.com <<< "For testing purpose"
 
