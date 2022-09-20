@@ -1,0 +1,49 @@
+name: DLT_STALE
+on:
+  workflow_dispatch:
+    inputs: 
+      days:
+       description: 'check commit for last X number of days'
+       required: true
+       type: string 
+      headsup_duration:
+       description: 'headsup duration'
+       required: true
+       type: string  
+jobs: 
+  dltStaleBranches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete stale branches
+        run:  |
+          git clone https://github.com/2115-27/angular-realworld-example-app.git/
+          cd angular-realworld-example-app/
+          
+          git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
+          echo --------BranchDetails.txt---------------
+          cat BranchDetails.txt
+          
+          days="${{ github.event.inputs.days }}"
+          sum=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
+          
+          echo ------------days-----------------
+          echo $days
+          echo ------------days + headsup duration-----------------
+          echo $sum is $ days plus ${{ github.event.inputs.headsup_duration }}
+          
+          
+          date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
+          date_Xdays_before_TodayMonth=$(date --date="$days days ago" +"%m")
+          date_Xdays_before_TodayDay=$(date --date="$days days ago" +"%d")
+          
+          date_Xdays_before_Today="$date_Xdays_before_TodayYear-$date_Xdays_before_TodayMonth-$date_Xdays_before_TodayDay"
+          
+          echo ----------------date_Xdays_before_Today-----------
+          echo $date_Xdays_before_Today
+          
+          echo --------showing dates less than "$date_Xdays_before_Today"------------
+          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt    
+          
+      - name: Deleting stale branch  
+        run: git branch -d  local_branch_name
