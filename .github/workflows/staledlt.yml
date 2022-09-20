@@ -21,6 +21,9 @@ jobs:
           cd angular-realworld-example-app/
           
           git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
+          sed -i "s~origin/~~g" BranchDetails.txt
+          sed -i "s~,~~g" BranchDetails.txt
+          
           echo --------BranchDetails.txt---------------
           cat BranchDetails.txt
           
