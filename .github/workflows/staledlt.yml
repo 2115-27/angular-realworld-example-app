@@ -45,7 +45,9 @@ jobs:
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
-          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt    
+          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt  >> test.txt
+          echo ---------test.txt---
+          cat test.txt
           
       - name: Deleting stale branch  
         run: git branch -d  local_branch_name
