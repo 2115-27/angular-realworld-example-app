@@ -29,8 +29,12 @@ jobs:
           
           awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date,Delete? (Y/N)"}; NR > 0{print $1, $2, $3;}' BranchDetails.txt > BranchList.csv
           
+          tail +2 BranchList.csv > BranchList2.csv 
+          
           echo --------BranchList.csv---------------
           cat BranchList.csv
+          echo -----------BranchList2.csv----------
+          cat BranchList2.csv
           
           days=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
           
