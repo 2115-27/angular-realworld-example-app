@@ -59,6 +59,6 @@ jobs:
           cat BranchList.txt
           
           sudo apt install mailutils
-          mail -s "testPOC" -A BranchList.txt athulya.s01@infosys.com <<< "For testing purpose"
+          mail -s "testPOC" -a BranchList.txt athulya.s01@infosys.com <<< "For testing purpose" < BranchList.txt
 
       
