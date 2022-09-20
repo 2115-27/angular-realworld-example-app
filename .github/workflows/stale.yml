@@ -37,7 +37,8 @@ jobs:
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
           awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt >> BranchList.txt    
-          
+          echo ---BranchList.txt-----
+          cat BranchList.txt
       - name: Sending notification about stale branch deletion   
         run: |
           sudo apt-get install mutt
