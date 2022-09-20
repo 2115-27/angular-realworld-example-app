@@ -1,4 +1,4 @@
-name: DLT_STALE
+name: DLT_STALE_TWO
 on:
   workflow_dispatch:
     inputs: 
