@@ -41,6 +41,7 @@ jobs:
           cat BranchList.txt
       - name: Sending notification about stale branch deletion   
         run: |
+          chmod 777 BranchList.txt
           sudo apt install mailutils
           mail -s "testPOC" -A BranchList.txt athulyams2000@gmail.com <<< "For testing purpose"
 
