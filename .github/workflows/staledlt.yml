@@ -27,14 +27,13 @@ jobs:
           echo --------BranchDetails.txt---------------
           cat BranchDetails.txt
           
-          days="${{ github.event.inputs.days }}"
-          sum=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
+          days=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
           
-          echo ------------days-----------------
+          echo ${{ github.event.inputs.headsup_duration }} )) is headsup duration
+          echo ${{ github.event.inputs.days }} )) 
+          
+          echo ------------days with headsup duration-----------------
           echo $days
-          echo ------------days + headsup duration-----------------
-          echo $sum is $ days plus ${{ github.event.inputs.headsup_duration }}
-          
           
           date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
           date_Xdays_before_TodayMonth=$(date --date="$days days ago" +"%m")
@@ -42,7 +41,7 @@ jobs:
           
           date_Xdays_before_Today="$date_Xdays_before_TodayYear-$date_Xdays_before_TodayMonth-$date_Xdays_before_TodayDay"
           
-          echo ----------------date_Xdays_before_Today-----------
+          echo ----------------date_Xdays_before_Today | headsup duration also added-----------
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
