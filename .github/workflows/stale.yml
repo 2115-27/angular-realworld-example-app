@@ -46,7 +46,7 @@ jobs:
       
       - name: Sending notification about stale branch deletion   
         run: |
-          sudo su
+          ls -lrta
           echo ---BranchList.txt-----
           cat BranchList.txt
           chmod 777 BranchList.txt
