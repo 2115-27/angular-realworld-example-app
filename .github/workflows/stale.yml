@@ -46,6 +46,7 @@ jobs:
       
       - name: Sending notification about stale branch deletion   
         run: |
+          pwd
           ls -lrta
           echo ---BranchList.txt-----
           cat BranchList.txt
