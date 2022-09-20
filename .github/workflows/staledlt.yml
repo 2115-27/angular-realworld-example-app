@@ -48,6 +48,7 @@ jobs:
           awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt  >> test.txt
           echo ---------test.txt---
           cat test.txt
+          echo ----------------------------
           cut -b 1- test.txt 
           
       - name: Deleting stale branch  
