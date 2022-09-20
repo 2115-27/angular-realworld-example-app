@@ -27,7 +27,7 @@ jobs:
           echo --------BranchDetails.txt---------------
           cat BranchDetails.txt
           
-          awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date,Delete? (Y/N)"}; NR > 0{print $1, $2, $3;}' BranchDetails.txt > BranchList.csv
+          awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date,Delete? (Y/N)"}; NR > 1{print $1, $2, $3;}' BranchDetails.txt > BranchList.csv
           
           echo --------BranchList.csv---------------
           cat BranchList.csv
