@@ -20,7 +20,7 @@ jobs:
           git clone https://github.com/2115-27/angular-realworld-example-app.git/
           cd angular-realworld-example-app/
           
-          git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
+          git branch -a --sort=-committerdate  --format='%(refname:short) |%(authorname)| %(committerdate:short)'>> BranchDetails.txt
           sed -i "s~origin/~~g" BranchDetails.txt
           sed -i "s~,~~g" BranchDetails.txt
           
