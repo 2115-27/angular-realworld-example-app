@@ -39,4 +39,7 @@ jobs:
           awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt >> BranchList.txt    
           
       - name: Sending notification about stale branch deletion   
-        run: echo "Sending an attachment for testing." | mutt -a BranchList.txt -s "attachment" athulyams2000@gmail.com
+        run: |
+          sudo apt-get install mutt
+          echo "Sending an attachment for testing." | mutt -a BranchList.txt -s "attachment" athulyams2000@gmail.com
+      
