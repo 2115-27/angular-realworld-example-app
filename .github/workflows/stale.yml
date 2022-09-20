@@ -42,9 +42,11 @@ jobs:
           cat BranchList.txt
           pwd
           ls -lrta
+          
       
       - name: Sending notification about stale branch deletion   
         run: |
+          sudo su
           echo ---BranchList.txt-----
           cat BranchList.txt
           chmod 777 BranchList.txt
