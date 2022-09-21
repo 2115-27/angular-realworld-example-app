@@ -20,17 +20,17 @@ jobs:
           git clone https://github.com/2115-27/angular-realworld-example-app.git/
           cd angular-realworld-example-app/
           
-          git branch -a --sort=-committerdate  --format='%(refname:short) |%(authorname)| %(committerdate:short)'>> BranchDetails.txt
-          sed -i "s~origin/~~g" BranchDetails.txt
-          sed -i "s~,~~g" BranchDetails.txt
+          git branch -a --sort=-committerdate  --format='%(refname:short) |%(authorname)| %(committerdate:short)'>> ${{ github.workspace }}/BranchDetails.txt
+          sed -i "s~origin/~~g" ${{ github.workspace }}/BranchDetails.txt
+          sed -i "s~,~~g" ${{ github.workspace }}/BranchDetails.txt
           
           echo --------BranchDetails.txt---------------
-          cat BranchDetails.txt
+          cat ${{ github.workspace }}/BranchDetails.txt
           
-          awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date,Delete? (Y/N)"}; NR > 0{print $1, $2, $3;}' BranchDetails.txt > BranchList.csv
+          awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date,Delete? (Y/N)"}; NR > 0{print $1, $2, $3;}' ${{ github.workspace }}/BranchDetails.txt > ${{ github.workspace }}/BranchList.csv
           
           echo --------BranchList.csv---------------
-          cat BranchList.csv
+          cat ${{ github.workspace }}/BranchList.csv
           
           days=$(( ${{ github.event.inputs.days }} + ${{ github.event.inputs.headsup_duration }} ))
           
@@ -50,28 +50,25 @@ jobs:
           echo $date_Xdays_before_Today
           
           echo --------showing dates less than "$date_Xdays_before_Today"------------
-          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchList.csv  >> StaleBranchname.csv
+          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' ${{ github.workspace }}/BranchList.csv  >> ${{ github.workspace }}/StaleBranchname.csv
           
           echo ---------StaleBranchname.csv---
-          cat StaleBranchname.csv
+          cat ${{ github.workspace }}/StaleBranchname.csv
           
           echo -----------StaleBranchname2.csv-----------------
-          tail +2 StaleBranchname.csv > tmp.csv
-          cut -d ',' -f 1 tmp.csv > StaleBranchname2.csv
-          cat StaleBranchname2.csv
+          tail +2 ${{ github.workspace }}/StaleBranchname.csv > ${{ github.workspace }}/tmp.csv
+          cut -d ',' -f 1 ${{ github.workspace }}/tmp.csv > ${{ github.workspace }}/StaleBranchname2.csv
+          cat ${{ github.workspace }}/StaleBranchname2.csv
           
       - name: Deleting stale branch  
         run: |
           pwd
           ls -lrta
-          cd angular-realworld-example-app/
-          pwd
-          ls -lrta
-          input='StaleBranchname2.csv'
-          sed 's/\r$//' StaleBranchname2.csv > input.csv
-          echo "" >> input.csv
+          input='${{ github.workspace }}/StaleBranchname2.csv'
+          sed 's/\r$//' ${{ github.workspace }}/StaleBranchname2.csv > ${{ github.workspace }}/input.csv
+          echo "" >> ${{ github.workspace }}/input.csv
             while IFS="\n" read -r line
             do 
               echo $line
                git push origin --delete $line
-            done < input.csv
+            done < ${{ github.workspace }}/input.csv
