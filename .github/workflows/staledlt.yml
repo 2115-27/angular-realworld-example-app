@@ -74,4 +74,4 @@ jobs:
             do 
               echo $line
               git branch -d  $line
-            done < input.cfg
+            done < input.csv
