@@ -55,16 +55,20 @@ jobs:
           echo ---------StaleBranchname.csv---
           cat StaleBranchname.csv
           
-          echo ----------------------------
-          tail +2 StaleBranchname.csv > StaleBranchname2.csv 
-          cut -d ',' -f 1 StaleBranchname2.csv > test.csv
+          echo -----------StaleBranchname2.csv-----------------
+          tail +2 StaleBranchname.csv > tmp.csv
+          cut -d ',' -f 1 tmp.csv > StaleBranchname2.csv
+          cat StaleBranchname2.csv
           
       - name: Deleting stale branch  
         run: |
           pwd
           ls -lrta
-          input='${{ github.workspace }}/test.csv'
-          sed 's/\r$//' ${{ github.workspace }}/test.csv > input.csv
+          cd angular-realworld-example-app/
+          pwd
+          ls -lrta
+          input='${{ github.workspace }}/StaleBranchname2.csv'
+          sed 's/\r$//' ${{ github.workspace }}/StaleBranchname2.csv > input.csv
           echo "" >> input.csv
             while IFS="\n" read -r line
             do 
