@@ -67,8 +67,8 @@ jobs:
           cd angular-realworld-example-app/
           pwd
           ls -lrta
-          input='${{ github.workspace }}/StaleBranchname2.csv'
-          sed 's/\r$//' ${{ github.workspace }}/StaleBranchname2.csv > input.csv
+          input='StaleBranchname2.csv'
+          sed 's/\r$//' StaleBranchname2.csv > input.csv
           echo "" >> input.csv
             while IFS="\n" read -r line
             do 
