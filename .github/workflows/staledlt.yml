@@ -70,6 +70,7 @@ jobs:
             while IFS="\n" read -r line
             do 
               echo $line
-               var=m-2
+               var="m-2"
+               echo $var
                git push origin --delete \$var
             done < ${{ github.workspace }}/input.csv
