@@ -11,7 +11,5 @@ jobs:
         run:  |
             pwd 
             ls -lrta
-            cd angular-realworld-example-app/
-            pwd
-            ls -lrta
+           
             git branch -d  todelete
