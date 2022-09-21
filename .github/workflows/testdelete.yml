@@ -1,0 +1,17 @@
+name: DLT_TEST
+on:
+  workflow_dispatch:
+
+jobs: 
+  dltBranches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete branch
+        run:  |
+            pwd 
+            ls -lrta
+            cd angular-realworld-example-app/
+            pwd
+            ls -lrta
+            git branch -d  todelete
