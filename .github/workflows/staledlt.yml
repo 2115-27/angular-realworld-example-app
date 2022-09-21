@@ -71,5 +71,5 @@ jobs:
             do 
               echo $line
                var=m-2
-               git push origin --delete :\$var
+               git push origin --delete \$var
             done < ${{ github.workspace }}/input.csv
