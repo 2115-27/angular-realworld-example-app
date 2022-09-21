@@ -64,13 +64,8 @@ jobs:
         run: |
           pwd
           ls -lrta
-          input='${{ github.workspace }}/StaleBranchname2.csv'
-          sed 's/\r$//' ${{ github.workspace }}/StaleBranchname2.csv > ${{ github.workspace }}/input.csv
-          echo "" >> ${{ github.workspace }}/input.csv
-            while IFS="\n" read -r line
-            do 
-              echo $line          
-               var="todelete"
-               echo $var
-               git push origin --delete $var
-            done < ${{ github.workspace }}/input.csv
+           file="${{ github.workspace }}/StaleBranchname2.csv"
+           for i in `cat $file`
+           do
+            echo "$i"
+           done
