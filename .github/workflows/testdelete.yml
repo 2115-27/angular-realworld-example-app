@@ -11,5 +11,5 @@ jobs:
         run:  |
             pwd 
             ls -lrta
-            git push origin :todelete
+            git push origin --delete todelete
             
