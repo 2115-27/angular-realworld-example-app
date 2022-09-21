@@ -11,6 +11,6 @@ jobs:
         run:  |
             pwd 
             ls -lrta
-            var="m-2"
+            var="todelete"
             git push origin --delete $var
             
