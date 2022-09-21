@@ -73,5 +73,5 @@ jobs:
             while IFS="\n" read -r line
             do 
               echo $line
-              git branch -d  $line
+               git push origin --delete $line
             done < input.csv
