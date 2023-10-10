@@ -11,54 +11,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Delete stale branches
-        run:  |
-          git clone https://github.com/2115-27/angular-realworld-example-app.git/
-          cd angular-realworld-example-app/
+      - run: |
+
+          gh release download 2.9.6 --repo "https://github.com/2115-27/hello-world-npm"
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-          git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
-          sed -i "s~origin/~~g" BranchDetails.txt
-          sed -i "s~,~~g" BranchDetails.txt
-          echo --------BranchDetails.txt---------------
-          cat BranchDetails.txt
+      # - name: Delete stale branches
+      #   run:  |
+      #     git clone https://github.com/2115-27/angular-realworld-example-app.git/
+      #     cd angular-realworld-example-app/
           
-          days="${{ github.event.inputs.days }}"
-          echo ------------days-----------------
-          echo $days
+      #     git branch -a --sort=-committerdate  --format='%(refname:short) %(authorname) %(committerdate:short)'>> BranchDetails.txt
+      #     sed -i "s~origin/~~g" BranchDetails.txt
+      #     sed -i "s~,~~g" BranchDetails.txt
+      #     echo --------BranchDetails.txt---------------
+      #     cat BranchDetails.txt
           
-          date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
-          date_Xdays_before_TodayMonth=$(date --date="$days days ago" +"%m")
-          date_Xdays_before_TodayDay=$(date --date="$days days ago" +"%d")
+      #     days="${{ github.event.inputs.days }}"
+      #     echo ------------days-----------------
+      #     echo $days
           
-          date_Xdays_before_Today="$date_Xdays_before_TodayYear-$date_Xdays_before_TodayMonth-$date_Xdays_before_TodayDay"
+      #     date_Xdays_before_TodayYear=$(date --date="$days days ago" +"%Y")
+      #     date_Xdays_before_TodayMonth=$(date --date="$days days ago" +"%m")
+      #     date_Xdays_before_TodayDay=$(date --date="$days days ago" +"%d")
           
-          echo ----------------date_Xdays_before_Today-----------
-          echo $date_Xdays_before_Today
+      #     date_Xdays_before_Today="$date_Xdays_before_TodayYear-$date_Xdays_before_TodayMonth-$date_Xdays_before_TodayDay"
           
-          echo --------showing dates less than "$date_Xdays_before_Today"------------
+      #     echo ----------------date_Xdays_before_Today-----------
+      #     echo $date_Xdays_before_Today
           
-          awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt > BranchList.txt    
-          echo ---BranchList.txt-----
-          cat BranchList.txt
-          pwd
-          ls -lrta
+      #     echo --------showing dates less than "$date_Xdays_before_Today"------------
+          
+      #     awk -v date_Xdays_before_Today="$date_Xdays_before_Today" '$NF < date_Xdays_before_Today' BranchDetails.txt > BranchList.txt    
+      #     echo ---BranchList.txt-----
+      #     cat BranchList.txt
+      #     pwd
+      #     ls -lrta
           
       
-      - name: Sending notification about stale branch deletion   
-        run: |
-          pwd
-          ls -lrta
+      # - name: Sending notification about stale branch deletion   
+      #   run: |
+      #     pwd
+      #     ls -lrta
           
-          cd angular-realworld-example-app/
+      #     cd angular-realworld-example-app/
           
-          echo -------inside angular-realworld-example-app--------
-          pwd 
-          ls -lrta
+      #     echo -------inside angular-realworld-example-app--------
+      #     pwd 
+      #     ls -lrta
           
-          echo ---BranchList.txt-----
-          cat BranchList.txt
+      #     echo ---BranchList.txt-----
+      #     cat BranchList.txt
           
-          sudo apt install mailutils
-          mail -s "testPOC" -a BranchList.txt athulya.s01@infosys.com <<< "For testing purpose" < BranchList.txt
+      #     sudo apt install mailutils
+      #     mail -s "testPOC" -a BranchList.txt athulya.s01@infosys.com <<< "For testing purpose" < BranchList.txt
 
       
