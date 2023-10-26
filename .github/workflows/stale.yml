@@ -1,6 +1,7 @@
 name: DLT_STALE
 on:
   pull_request:
+    types: [closed]
     branches:
      - master
   workflow_dispatch:
@@ -9,6 +10,9 @@ on:
        description: 'check commit for last X number of days'
        required: true
        type: string 
+
+
+# changes
 jobs: 
   dltStaleBranches:
     runs-on: ubuntu-latest
