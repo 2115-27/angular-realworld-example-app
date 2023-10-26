@@ -1,5 +1,8 @@
 name: DLT_STALE
 on:
+  pull_request:
+    branches:
+     - master
   workflow_dispatch:
     inputs: 
       days:
@@ -10,13 +13,18 @@ jobs:
   dltStaleBranches:
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
       - run: |
+          echo ${{ github.ref_name }} is branchname
 
-          gh release download 2.9.6 --repo 2115-27/hello-world-npm
-          ls -la
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      
+      # - uses: actions/checkout@v2
+      # - run: |
+
+      #     gh release download 2.9.6 --repo 2115-27/hello-world-npm
+      #     ls -la
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       # - name: Delete stale branches
       #   run:  |
